@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  moos-cluster-bomb:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    image: raymondturrisi/focal-fossa-it:latest
+    container_name: moos-cluster-bomb 
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    volumes:
+      - ../moos-cluster-bombs:/root/moos-cluster-bombs 
+      - ~/.ssh:/root/.ssh
+      - ~/svn/moos-ivp-rturrisi/missions/convoy_baseline/logs:/root/dockerlogs
+    networks:
+      - extAccess
+    ports:
+      - "8080:80"
+      - "2222:22"
+    working_dir: "/root"
+    entrypoint: 
+      - "/root/moos-cluster-bombs/scripts/entrypoint.sh"
+    #If you need to poke around the container after you launch it, or are experimenting locally, set these two options below to true
+    stdin_open: true
+    tty: true
+networks:
+  extAccess:
+    driver: bridge
