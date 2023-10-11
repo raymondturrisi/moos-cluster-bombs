@@ -1,0 +1,21 @@
+Bootstrap: docker
+From: raymondturrisi/focal-fossa-it:latest
+
+%environment
+    export DEBIAN_FRONTEND=noninteractive
+#TODO: 
+ - Dockerfile build instructions
+ - Wrap this build script with a bash script which launches singularity with bridged network options
+ - Give singularity file a name
+ - Configure working directory
+%files
+    ../moos-cluster-bombs /root/moos-cluster-bombs
+    ~/.ssh /root/.ssh
+    ~/svn/moos-ivp-rturrisi/missions/convoy_baseline/logs /root/dockerlogs
+
+%runscript
+    exec /root/moos-cluster-bombs/scripts/entrypoint.sh "$@"
+
+%labels
+    Author YourName
+    Version v0.0.1
