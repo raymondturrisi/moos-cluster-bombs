@@ -10,9 +10,9 @@ services:
     environment:
       - DEBIAN_FRONTEND=noninteractive
     volumes:
-      - ../moos-cluster-bombs:/root/moos-cluster-bombs 
+      - ~/moos/moos-cluster-bombs:/root/moos-cluster-bombs 
       - ~/.ssh:/root/.ssh
-      - ~/svn/moos-ivp-rturrisi/missions/convoy_baseline/logs:/root/dockerlogs
+      - ~/moos/moos-ivp-rturrisi/missions/convoy_baseline/logs:/root/dockerlogs
     networks:
       - extAccess
     ports:

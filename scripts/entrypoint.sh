@@ -1,13 +1,17 @@
 #!/bin/bash
 
+#sudo su
 cd /root
+
 if [ ! -d moos-ivp-rturrisi ]; then 
     echo "Cloning <moos-ivp-rturrisi>"
-    git clone git@github.com:raymondturrisi/moos-ivp-rturrisi.git &> /dev/null
+    git clone git@github.com:raymondturrisi/moos-ivp-rturrisi.git #&> /dev/null
     cd moos-ivp-rturrisi && ./build.sh &> /dev/null && echo "moos-ivp-rturrisi - Build ok!" || echo "moos-ivp-rturrisi - Build Fail!"
+    pip3 install -r /root/moos-ivp-rturrisi/missions/convoy_baseline/info/requirements.txt
 else
     echo "Updating <moos-ivp-rturrisi>"
     cd moos-ivp-rturrisi && git pull &> /dev/null && ./build.sh &> /dev/null && echo "moos-ivp-rturrisi - Build ok!" || echo "moos-ivp-rturrisi - Build Fail!"
+    pip3 install -r /root/moos-ivp-rturrisi/missions/convoy_baseline/info/requirements.txt
 fi
 
 rm -rf /root/moos-ivp-rturrisi/missions/convoy_baseline/logs
