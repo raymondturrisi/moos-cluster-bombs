@@ -14,7 +14,10 @@
 cd /root
 
 # Setup the container with a script unique to your mission needs
-./moos-cluster-bombs/scripts/setup_container.sh
+source moos-cluster-bombs/scripts/setup_container.sh
+
+#Source the .bashrc which should be generated in the setup script
 source /root/.bashrc
+
 #Run the desired process
 bash moos-cluster-bombs/scripts/run_blaunch_1.sh
