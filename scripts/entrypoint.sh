@@ -3,15 +3,16 @@
 #sudo su
 cd /root
 
+
 if [ ! -d moos-ivp-rturrisi ]; then 
     echo "Cloning <moos-ivp-rturrisi>"
-    git clone git@github.com:raymondturrisi/moos-ivp-rturrisi.git #&> /dev/null
+    git clone git@github.com:raymondturrisi/moos-ivp-rturrisi.git &> /dev/null && echo "Cloned <moos-ivp-rturrisi>" || echo "Cloning <moos-ivp-rturrisi> Failed"
     cd moos-ivp-rturrisi && ./build.sh &> /dev/null && echo "moos-ivp-rturrisi - Build ok!" || echo "moos-ivp-rturrisi - Build Fail!"
-    pip3 install -r /root/moos-ivp-rturrisi/missions/convoy_baseline/info/requirements.txt
+    pip3 install -r /root/moos-ivp-rturrisi/missions/convoy_baseline/info/requirements.txt &> /dev/null && echo "Python Upgrade - Success" || echo "Python Upgrade - False"
 else
     echo "Updating <moos-ivp-rturrisi>"
     cd moos-ivp-rturrisi && git pull &> /dev/null && ./build.sh &> /dev/null && echo "moos-ivp-rturrisi - Build ok!" || echo "moos-ivp-rturrisi - Build Fail!"
-    pip3 install -r /root/moos-ivp-rturrisi/missions/convoy_baseline/info/requirements.txt
+    pip3 install -r /root/moos-ivp-rturrisi/missions/convoy_baseline/info/requirements.txt  &> /dev/null
 fi
 
 rm -rf /root/moos-ivp-rturrisi/missions/convoy_baseline/logs
@@ -20,17 +21,17 @@ ln -s /root/dockerlogs /root/moos-ivp-rturrisi/missions/convoy_baseline/logs
 cd /root
 if [ ! -d moos-ivp-pavlab ]; then 
     echo "Checking out <moos-ivp-pavlab>"
-    svn co svn+ssh://rturrisi@oceanai.mit.edu/home/svn/repos/moos-ivp-pavlab &> /dev/null
-    cd moos-ivp-pavlab && ./ninja_build.sh &> /dev/null && echo "moos-ivp-pavlab - Build ok!" || echo "moos-ivp-pavlab - Build Fail!"
+    svn co svn+ssh://rturrisi@oceanai.mit.edu/home/svn/repos/moos-ivp-pavlab &> /dev/null && echo "Cloned <moos-ivp-pavlab>" || echo "Cloning <moos-ivp-pavlab> Failed"
+    cd moos-ivp-pavlab && ./build.sh &> /dev/null && echo "moos-ivp-pavlab - Build ok!" || echo "moos-ivp-pavlab - Build Fail!"
 else
     echo "Updating <moos-ivp-pavlab>"
-    cd moos-ivp-pavlab && svn up &> /dev/null && ./ninja_build.sh &> /dev/null && echo "moos-ivp-pavlab - Build ok!" || echo "moos-ivp-pavlab - Build Fail!"
+    cd moos-ivp-pavlab && svn up &> /dev/null && ./build.sh &> /dev/null && echo "moos-ivp-pavlab - Build ok!" || echo "moos-ivp-pavlab - Build Fail!"
 fi
 
 cd /root
 if [ ! -d moos-ivp-swarm ]; then 
     echo "Checking out <moos-ivp-swarm>"
-    svn co svn+ssh://rturrisi@oceanai.mit.edu/home/svn/repos/moos-ivp-swarm/trunk moos-ivp-swarm &> /dev/null
+    svn co svn+ssh://rturrisi@oceanai.mit.edu/home/svn/repos/moos-ivp-swarm/trunk moos-ivp-swarm &> /dev/null && echo "Cloned <moos-ivp-swarm>" || echo "Cloning <moos-ivp-swarm> Failed"
     cd moos-ivp-swarm && ./build.sh &> /dev/null && echo "moos-ivp-swarm - Build ok!" || echo "moos-ivp-swarm - Build Fail!"
 else
     echo "Updating <moos-ivp-swarm>"
@@ -40,8 +41,11 @@ fi
 PATH=$PATH:/root/moos-ivp/bin
 PATH=$PATH:/root/moos-ivp/scripts
 PATH=$PATH:/root/moos-ivp-rturrisi/bin
+PATH=$PATH:/root/moos-ivp-rturrisi/scripts
 PATH=$PATH:/root/moos-ivp-pavlab/bin
+PATH=$PATH:/root/moos-ivp-pavlab/scripts
 PATH=$PATH:/root/moos-ivp-swarm/bin
+PATH=$PATH:/root/moos-ivp-swarm/scripts
 export PATH=$PATH
 
 IVPBD=/root/moos-ivp/lib

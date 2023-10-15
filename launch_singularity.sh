@@ -7,12 +7,17 @@ SSH_DIR="/home/rturrisi/.ssh"
 DOCKER_LOGS_DIR="/home/rturrisi/moos/moos-ivp-rturrisi/missions/convoy_baseline/logs"
 
 # Launch the Singularity container
+
+
 singularity exec \
     --fakeroot \
     --net \
+    --hostname cluster-bomb \
+    --contain \
     --dns 8.8.8.8 \
     --dns 8.8.4.4 \
     --dns 1.1.1.1 \
+    --bind $SINGULARITY_IMAGE/root:/root\
     --bind $MCB:/root/moos-cluster-bombs \
     --bind $SSH_DIR:/root/.ssh \
     --bind $DOCKER_LOGS_DIR:/root/dockerlogs \

@@ -4,6 +4,10 @@ From: raymondturrisi/focal-fossa-it:latest
 %environment
     export DEBIAN_FRONTEND=noninteractive
 %post
+    export TMPDIR=/tmp
+    mkdir -p /root/dockerlogs
+    mkdir -p /root/moos-cluster-bombs
+    mkdir -p /root/.ssh
     cd /root
     DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get upgrade -y
     DEBIAN_FRONTEND=noninteractive apt-get install -y subversion git g++ cmake python3 python3-pip libfltk1.3-dev freeglut3-dev libpng-dev libjpeg-dev libxft-dev libxinerama-dev libtiff5-dev xterm
