@@ -19,11 +19,13 @@ if [ ! -d moos-ivp-rturrisi ]; then
     git clone git@github.com:raymondturrisi/moos-ivp-rturrisi.git &> /dev/null && echo "Cloned <moos-ivp-rturrisi>" || echo "Cloning <moos-ivp-rturrisi> Failed"
     cd moos-ivp-rturrisi && ./build.sh &> /dev/null && echo "moos-ivp-rturrisi - Build ok!" || echo "moos-ivp-rturrisi - Build Fail!"
     echo "Updating Python Requirements for <moos-ivp-rturrisi>"
+    apt install p7zip-full -y 
     pip3 install -r /root/moos-ivp-rturrisi/missions/convoy_baseline/info/requirements.txt &> /dev/null && echo "Python Upgrade - Success" || echo "Python Upgrade - False"
 else
     echo "Updating <moos-ivp-rturrisi>"
     cd moos-ivp-rturrisi && git pull &> /dev/null && ./build.sh &> /dev/null && echo "moos-ivp-rturrisi - Build ok!" || echo "moos-ivp-rturrisi - Build Fail!"
     echo "Updating Python Requirements for <moos-ivp-rturrisi>"
+    apt install p7zip-full -y 
     pip3 install -r /root/moos-ivp-rturrisi/missions/convoy_baseline/info/requirements.txt  &> /dev/null && echo "Python Upgrade - Success" || echo "Python Upgrade - False"
 fi
 

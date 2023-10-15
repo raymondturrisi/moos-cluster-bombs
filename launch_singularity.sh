@@ -8,12 +8,13 @@ DOCKER_LOGS_DIR="/home/rturrisi/moos/moos-ivp-rturrisi/missions/convoy_baseline/
 
 # Launch the Singularity container
 
-
 singularity exec \
     --fakeroot \
     --net \
     --hostname cluster-bomb \
     --contain \
+    --writable \
+    --no-home \
     --pid \
     --dns 8.8.8.8 \
     --dns 8.8.4.4 \

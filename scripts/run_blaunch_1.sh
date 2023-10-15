@@ -8,4 +8,6 @@ echo "Launching <blaunch.sh>"
 --crange="[1..2]" \
 --pg generators/generator_set1_params.py \
 --nogui \
---prange="[1..2]" --k 1
+--prange="[938..1873]" --k 2
+
+#[1..936], [937..1873], [1874..2810],[2811..3747]
