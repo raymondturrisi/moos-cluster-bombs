@@ -14,6 +14,7 @@ singularity exec \
     --net \
     --hostname cluster-bomb \
     --contain \
+    --pid \
     --dns 8.8.8.8 \
     --dns 8.8.4.4 \
     --dns 1.1.1.1 \
