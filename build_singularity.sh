@@ -1,3 +1,3 @@
 #!/bin/bash
 
-singularity build --fakeroot --sandbox moos-cluster-bomb.sif singularity.def
+singularity build --sandbox --remote moos-cluster-bomb.sif singularity.def
